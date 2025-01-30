@@ -1,6 +1,7 @@
 package com.mx.ClinicaPrivada.Medico.entidad;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mx.ClinicaPrivada.Especialidades.entidad.Especialidades;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,10 +39,12 @@ public class Medicos {
     @Column(name = "email")
     private String email;
 
+    //RELACION MUCHOS A UNO CON LA ENTIDAD ESPECIALIDAD
     @ManyToOne
-    @JoinColumn(name = "especialidad_id", referencedColumnName = "id", nullable = true)
+    @JsonProperty("especialidad")//CAMBIAR FORMATO EN JSON
+    //REFERENCIA A LA LLAVE FORANEA ESPECIALIDAD_NOMBRE DE MEDICOS A COLUMNA NOMBRE DE ESPECIALIDAD
+    @JoinColumn(name = "especialidad_nombre", referencedColumnName = "nombre",  nullable = true)
     private Especialidades especialidades;
-
 
 }
 

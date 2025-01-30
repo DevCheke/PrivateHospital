@@ -1,5 +1,8 @@
 package com.mx.ClinicaPrivada.Especialidades.entidad;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +18,14 @@ public class Especialidades {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "nombre")
+    @JsonProperty("tipo_especialidad")
     private String nombre;
 
+     /* Ignorar el campo id al serializar
+     @JsonIgnore
+     public int getId() {
+         return id;
+     }*/
     public Especialidades(DatosRegistroEspecialidades datosRegistroEspecialidades){
         this.nombre = datosRegistroEspecialidades.nombre();
     }
