@@ -30,6 +30,9 @@ public class Medicos {
     @Column(name = "cedula")
     private String cedula;
 
+    @Column(name = "especialidad")
+    private String especialidad;
+
     @Column(name = "telefono")
     private String telefono;
 
@@ -39,12 +42,13 @@ public class Medicos {
     @Column(name = "email")
     private String email;
 
-    //RELACION MUCHOS A UNO CON LA ENTIDAD ESPECIALIDAD
+    /*RELACION MUCHOS A UNO CON LA ENTIDAD ESPECIALIDAD
     @ManyToOne
     @JsonProperty("especialidad")//CAMBIAR FORMATO EN JSON
     //REFERENCIA A LA LLAVE FORANEA ESPECIALIDAD_NOMBRE DE MEDICOS A COLUMNA NOMBRE DE ESPECIALIDAD
     @JoinColumn(name = "especialidad_nombre", referencedColumnName = "nombre",  nullable = true)
-    private Especialidades especialidades;
+    private Especialidades especialidades;*/
+
 
 }
 
