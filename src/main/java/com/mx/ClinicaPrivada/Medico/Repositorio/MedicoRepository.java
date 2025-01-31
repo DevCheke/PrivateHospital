@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MedicoRepository extends JpaRepository<Medicos, Integer> {
     @Query(value = "SELECT * FROM MEDICOS ORDER BY ID ASC",nativeQuery = true)
@@ -14,6 +15,6 @@ public interface MedicoRepository extends JpaRepository<Medicos, Integer> {
     List<Medicos> findByNombre(String nombre);
 
     // Encuentra todos los médicos por su nombre
-    List<Medicos> findById(int id);
+    Optional<Medicos> findById(int id);
 
 }
