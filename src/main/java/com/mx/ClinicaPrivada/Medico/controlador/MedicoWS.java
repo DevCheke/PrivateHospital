@@ -32,6 +32,15 @@ public class MedicoWS {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
     }
 
+    //localhost:8081/api/buscarmedicoporid
+    @PostMapping("buscarmedicoporid")
+    public ResponseEntity<?> buscarmedicoporid(@RequestBody Medicos medicos) {
+        //SE CREO UNA LISTA DE TIPO MEDICOS PARA BUSCAR PRIMERO SI EXISTE EL ID
+        List<Medicos> buscarDoctor = medicoRepository.findById(medicos.getId());
+        //SI LOS ENCUENTRA DEVUELVE EL REGISTRO O LOS MEDICOS ENCONTRADOS CON ESE ID
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(buscarDoctor);
+    }
+
     //localhost:8081/api/buscarmedico
     @PostMapping("buscarmedico")
     public ResponseEntity<?> buscarmedico(@RequestBody Medicos medicos) {
@@ -58,13 +67,10 @@ public class MedicoWS {
     //localhost:8081/api/eliminarMedico
     @DeleteMapping("/eliminarMedico")
     public ResponseEntity<?> eliminarMedico(@RequestBody Medicos medicos) {
-        List<Medicos> encontrarMedico = medicoRepository.findById(medicos.getId());
-        if (encontrarMedico.isEmpty()==null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID no proporcionado. Verifica los datos.");
-        } else {
-            // Eliminar el médico si existe
-            medicoRepository.deleteById(medicos.getId());
-            return ResponseEntity.status(HttpStatus.OK).body("Médico eliminado exitosamente.");
-        }
+
+        medicoRepository.delete(medicos);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("ELIMINADO!!!!");
     }
 }
+
+
