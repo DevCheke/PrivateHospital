@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -39,11 +40,31 @@ public class MedicoWS {
         //SE UTILIZA .isEmpty para comprobar que la lista este vacia o no contenga un valor similar en listaMedicos
         if (listaMedicos.isEmpty()) {
             // Si no se encuentra médicos, devolvera un mensaje de ERROR!
-            String mensaje = "EL MEDICO CON EL NOMBRE '"+ medicos.getNombre()+"' NO SE ENCUENTRA! VERIFICAR!";
+            String mensaje = "EL MEDICO CON EL NOMBRE '" + medicos.getNombre() + "' NO SE ENCUENTRA! VERIFICAR!";
             return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
         }
         //SI LOS ENCUENTRA DEVUELVE EL REGISTRO O LOS MEDICOS ENCONTRADOS CON ESE NOMBRE
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(listaMedicos);
+    }
 
+    //localhost:8081/api/actualizarMedico
+    @PutMapping("actualizarMedico")
+    public ResponseEntity<?> actualizarMedico(@RequestBody Medicos medicos) {
+        String mensaje = "ACTUALIZADO!!!";
+        medicoRepository.save(medicos);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+    }
+
+    //localhost:8081/api/eliminarMedico
+    @DeleteMapping("/eliminarMedico")
+    public ResponseEntity<?> eliminarMedico(@RequestBody Medicos medicos) {
+        List<Medicos> encontrarMedico = medicoRepository.findById(medicos.getId());
+        if (encontrarMedico.isEmpty()==null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID no proporcionado. Verifica los datos.");
+        } else {
+            // Eliminar el médico si existe
+            medicoRepository.deleteById(medicos.getId());
+            return ResponseEntity.status(HttpStatus.OK).body("Médico eliminado exitosamente.");
+        }
     }
 }

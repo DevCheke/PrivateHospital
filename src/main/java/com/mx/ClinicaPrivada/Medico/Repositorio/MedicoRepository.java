@@ -12,4 +12,8 @@ public interface MedicoRepository extends JpaRepository<Medicos, Integer> {
 
     // Encuentra todos los médicos por su nombre
     List<Medicos> findByNombre(String nombre);
+
+    // Encuentra todos los médicos por su nombre
+    List<Medicos> findById(int id);
+
 }
