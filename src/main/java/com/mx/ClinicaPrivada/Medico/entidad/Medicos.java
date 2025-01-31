@@ -42,6 +42,7 @@ public class Medicos {
     @Column(name = "email")
     private String email;
 
+
     /*RELACION MUCHOS A UNO CON LA ENTIDAD ESPECIALIDAD
     @ManyToOne
     @JsonProperty("especialidad")//CAMBIAR FORMATO EN JSON
