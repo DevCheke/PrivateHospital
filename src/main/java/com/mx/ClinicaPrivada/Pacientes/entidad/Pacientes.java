@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "pacientes")
@@ -55,4 +56,8 @@ public class Pacientes {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro = LocalDateTime.now();
 
+    //SE CREO ESTE METODO PARA ELIMINAR LOS MILISEGUNDOS EN LA FECHA DEL REGISTRO
+    public void eliminarSegundos(){
+        LocalDateTime truncar = fechaRegistro.truncatedTo(ChronoUnit.SECONDS);
+    }
 }
