@@ -32,14 +32,14 @@ public class PacientesWS {
     //localhost:8081/api/guardarPacientes
     @PostMapping("/guardarPacientes")
     public ResponseEntity<?> guardarPacientes(@RequestBody Pacientes pacientes) {
-        pacienteService.crearPaciente(pacientes);
+        pacienteService.guardarPaciente(pacientes);
         return ResponseEntity.accepted().body("GUARDADO!");
     }
 
     //localhost:8081/api/buscarPacientePorNSeguro/{numSeguro}
     @GetMapping("/buscarPacientePorNSeguro/{numSeguro}")
     public ResponseEntity<?>buscarPacientePorNSeguro(@PathVariable String numSeguro){
-        Optional<Pacientes> buscarPaciente = pacienteRepository.findByNumSeguro(numSeguro);
+        Optional<Pacientes> buscarPaciente = pacienteRepository.findByIdPaciente(numSeguro);
         if (buscarPaciente.isEmpty()) {
             return ResponseEntity.badRequest().body("PACIENTE NO ENCONTRADO!!!");
         }

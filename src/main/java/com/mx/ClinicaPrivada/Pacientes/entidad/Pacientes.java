@@ -19,12 +19,9 @@ import java.time.temporal.ChronoUnit;
 @NoArgsConstructor
 public class Pacientes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_paciente")
-    private int idPaciente;
-
-    @Column(name = "num_seguro")
-    private String numSeguro;
+    private String idPaciente;
 
     @Column(name = "nombre")
     private String nombre;
@@ -59,5 +56,6 @@ public class Pacientes {
     //SE CREO ESTE METODO PARA ELIMINAR LOS MILISEGUNDOS EN LA FECHA DEL REGISTRO
     public void eliminarSegundos(){
         LocalDateTime truncar = fechaRegistro.truncatedTo(ChronoUnit.SECONDS);
+
     }
 }

@@ -33,7 +33,7 @@ public class MedicoWS {
     }
 
     //localhost:8081/api/buscarmedicoporid/{id}
-    @PostMapping("buscarmedicoporid/{id}")
+    @GetMapping("buscarmedicoporid/{id}")
     public ResponseEntity<?> buscarmedicoporid(@PathVariable int id) {
         //El Optional se creo para verificar si el ID esta registrado o no existe en Medicos
         Optional<Medicos> doctor = medicoRepository.findById(id);
@@ -67,7 +67,7 @@ public class MedicoWS {
     public ResponseEntity<?> actualizarMedico(@RequestBody Medicos medicos) {
         String mensaje = "ACTUALIZADO!!!";
         medicoRepository.save(medicos);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(mensaje);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(medicos);
     }
 
     //localhost:8081/api/eliminarMedico
