@@ -28,12 +28,10 @@ public class CitaPacientes {
     @Column(name = "id")
     private int id;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "paciente_id", referencedColumnName = "id_paciente")
     private Pacientes paciente;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "medico_id", referencedColumnName = "id")
     private Medicos medico;

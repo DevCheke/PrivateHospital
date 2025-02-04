@@ -23,7 +23,7 @@ public class CitasPacientesWS {
     //localhost:8081/api/listarcitas
     @GetMapping("/listarcitas")
     public List<CitaDTO> listarcitas(){
-         return citasService.getCitas();
+         return citasService.obtenerCitas();
     }
 
     //localhost:8081/api/guardarcita
