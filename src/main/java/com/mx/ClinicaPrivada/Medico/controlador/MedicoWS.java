@@ -3,6 +3,7 @@ package com.mx.ClinicaPrivada.Medico.controlador;
 import com.mx.ClinicaPrivada.Especialidades.entidad.Especialidades;
 import com.mx.ClinicaPrivada.Medico.Repositorio.MedicoRepository;
 import com.mx.ClinicaPrivada.Medico.entidad.Medicos;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +76,15 @@ public class MedicoWS {
     public ResponseEntity<?> eliminarMedico(@RequestBody Medicos medicos) {
         medicoRepository.delete(medicos);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("ELIMINADO!!!!");
+    }
+
+    //localhost:8081/api/actualizarMedicos/{id}
+    @PutMapping("/actualizarMedicos/{id}")
+    @Transactional
+    public ResponseEntity actualizarMedico(@PathVariable int id, @RequestBody Medicos medicos) {
+        String mensaje = "ACTUALIZADO";
+        medicoRepository.save(medicos);
+        return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.listarMedicos());
     }
 }
 

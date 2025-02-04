@@ -56,6 +56,5 @@ public class Pacientes {
     //SE CREO ESTE METODO PARA ELIMINAR LOS MILISEGUNDOS EN LA FECHA DEL REGISTRO
     public void eliminarSegundos(){
         LocalDateTime truncar = fechaRegistro.truncatedTo(ChronoUnit.SECONDS);
-
     }
 }
