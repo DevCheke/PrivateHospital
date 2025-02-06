@@ -15,13 +15,11 @@ import java.time.LocalDateTime;
 public class CitaDTO {
     private int id_cita;
     private String pacienteId;
-    private String cedula;
+    private String medico_cedula;
     private String nombreMedico;
     private String medicoApellidop;
     private String medicoApellidom;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime fechaCita;
     private String motivo;
-
-
 }

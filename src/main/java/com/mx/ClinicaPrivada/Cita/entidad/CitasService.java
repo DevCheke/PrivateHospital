@@ -4,12 +4,14 @@ package com.mx.ClinicaPrivada.Cita.entidad;
 import com.mx.ClinicaPrivada.Cita.citaDTO.CitaDTO;
 import com.mx.ClinicaPrivada.Medico.entidad.Medicos;
 import com.mx.ClinicaPrivada.Pacientes.entidad.Pacientes;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 public class CitasService {
